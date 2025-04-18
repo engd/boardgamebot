@@ -43,7 +43,7 @@ module "knowledge_base" {
 resource "aws_bedrockagent_agent" "boardgamebot" {
   agent_name       = "boardgamebot-agent"
   description      = "Board game assistant agent with guardrails and knowledge base"
-  foundation_model = "anthropic.claude-3-sonnet-20240229-v1:0"
+  foundation_model = "anthropic.claude-3-5-sonnet-20240620-v1:0"
   instruction      = <<-EOT
     You are a helpful board game assistant. Your purpose is to:
     1. Help users learn and understand board games
