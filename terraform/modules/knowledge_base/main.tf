@@ -1,4 +1,4 @@
-/* resource "aws_bedrockagent_knowledge_base" "boardgamebot" {
+resource "aws_bedrockagent_knowledge_base" "boardgamebot" {
   name     = "boardgamebot-knowledge-base"
   role_arn = aws_iam_role.boardgamebot_knowledge_base.arn
   knowledge_base_configuration {
@@ -19,7 +19,7 @@
       }
     }
   }
-} */
+} 
 
 /* resource "aws_bedrockagent_data_source" "boardgamebot" {
   knowledge_base_id = aws_bedrockagent_knowledge_base.boardgamebot.id
