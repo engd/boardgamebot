@@ -1,6 +1,4 @@
-data "aws_caller_identity" "this" {}
-
-resource "aws_bedrockagent_knowledge_base" "boardgamebot" {
+/* resource "aws_bedrockagent_knowledge_base" "boardgamebot" {
   name     = "boardgamebot-knowledge-base"
   role_arn = aws_iam_role.boardgamebot_knowledge_base.arn
   knowledge_base_configuration {
@@ -21,9 +19,9 @@ resource "aws_bedrockagent_knowledge_base" "boardgamebot" {
       }
     }
   }
-}
+} */
 
-resource "aws_bedrockagent_data_source" "boardgamebot" {
+/* resource "aws_bedrockagent_data_source" "boardgamebot" {
   knowledge_base_id = aws_bedrockagent_knowledge_base.boardgamebot.id
   name              = "bedrock-knowledge-base-data-source-bucket"
   data_source_configuration {
@@ -42,15 +40,4 @@ resource "aws_bedrockagent_data_source" "boardgamebot" {
       }
     }
   }
-}
-
-resource "aws_opensearchserverless_collection" "boardgamebot_knowledge_base" {
-  name = "bgb-knowledge-base"
-  type = "VECTORSEARCH"
-
-  depends_on = [
-    aws_opensearchserverless_access_policy.boardgamebot_kb_aoss_policy,
-    aws_opensearchserverless_security_policy.boardgamebot_kb_encryption_policy,
-    aws_opensearchserverless_security_policy.boardgamebot_kb_network_policy
-  ]
-}
+} */
