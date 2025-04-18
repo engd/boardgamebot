@@ -1,16 +1,3 @@
-data "aws_caller_identity" "this" {}
-
-resource "aws_opensearchserverless_collection" "boardgamebot_knowledge_base" {
-  name = "bgb-knowledge-base"
-  type = "VECTORSEARCH"
-
-  depends_on = [
-    aws_opensearchserverless_access_policy.boardgamebot_kb_aoss_policy,
-    aws_opensearchserverless_security_policy.boardgamebot_kb_encryption_policy,
-    aws_opensearchserverless_security_policy.boardgamebot_kb_network_policy
-  ]
-}
-
 resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" {
   name = "bgb-kb-aoss-access-policy"
   type = "data"
@@ -89,4 +76,19 @@ resource "aws_opensearchserverless_security_policy" "boardgamebot_kb_network_pol
       AllowFromPublic = true
     }
   ])
+}
+
+resource "aws_iam_role" "boardgamebot_knowledge_base" {
+  name               = "bedrock-kb-role"
+  assume_role_policy = data.aws_iam_policy_document.boardgamebot_knowledge_base_assume_role.json
+}
+
+data "aws_iam_policy_document" "boardgamebot_knowledge_base_assume_role" {
+  statement {
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "Service"
+      identifiers = ["bedrock.amazonaws.com"]
+    }
+  }
 }
