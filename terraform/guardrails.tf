@@ -31,7 +31,7 @@ resource "aws_bedrock_guardrail" "boardgamebot" {
   contextual_grounding_policy_config {
     filters_config {
       type      = "RELEVANCE"
-      threshold = 0.7   
+      threshold = 0.7
     }
   }
 }

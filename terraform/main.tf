@@ -41,10 +41,10 @@ module "knowledge_base" {
 }
 
 resource "aws_bedrockagent_agent" "boardgamebot" {
-  agent_name          = "boardgamebot-agent"
-  description         = "Board game assistant agent with guardrails and knowledge base"
-  foundation_model    = "anthropic.claude-3-sonnet-20240229-v1:0"
-  instruction         = <<-EOT
+  agent_name       = "boardgamebot-agent"
+  description      = "Board game assistant agent with guardrails and knowledge base"
+  foundation_model = "anthropic.claude-3-sonnet-20240229-v1:0"
+  instruction      = <<-EOT
     You are a helpful board game assistant. Your purpose is to:
     1. Help users learn and understand board games
     2. Provide game recommendations based on player count and preferences
@@ -58,6 +58,12 @@ resource "aws_bedrockagent_agent" "boardgamebot" {
   EOT
 
   agent_resource_role_arn = aws_iam_role.bedrock_agent_role.arn
+  guardrail_configuration = [
+    {
+      guardrail_identifier = aws_bedrock_guardrail.boardgamebot.guardrail_id
+      guardrail_version    = aws_bedrock_guardrail_version.boardgamebot.version
+    }
+  ]
 }
 
 resource "aws_bedrockagent_agent_alias" "boardgamebot" {
