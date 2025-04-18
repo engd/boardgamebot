@@ -29,7 +29,7 @@ resource "aws_opensearchserverless_collection" "boardgamebot_knowledge_base" {
   ]
 }
 
-resource "opensearch_index" "bgb_knowledge_base_index" {
+/* resource "opensearch_index" "bgb_knowledge_base_index" {
   name                           = "bedrock-knowledge-base-default-index"
   number_of_shards               = "2"
   number_of_replicas             = "1"
@@ -67,4 +67,4 @@ resource "opensearch_index" "bgb_knowledge_base_index" {
   }
   force_destroy = true
   depends_on    = [aws_opensearchserverless_collection.boardgamebot_knowledge_base]
-} 
+}  */
