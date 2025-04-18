@@ -1,6 +1,12 @@
 resource "aws_opensearchserverless_collection" "boardgamebot_knowledge_base" {
   name = "bgb-knowledge-base"
   type = "VECTORSEARCH"
+
+  depends_on = [
+    aws_opensearchserverless_access_policy.boardgamebot_kb_aoss_policy,
+    aws_opensearchserverless_security_policy.boardgamebot_kb_encryption_policy,
+    aws_opensearchserverless_security_policy.boardgamebot_kb_network_policy
+  ]
 }
 
 resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" {
