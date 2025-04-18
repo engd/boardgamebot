@@ -50,7 +50,7 @@ resource "aws_bedrockagent_knowledge_base" "boardgamebot" {
   role_arn = aws_iam_role.boardgamebot_knowledge_base.arn
   knowledge_base_configuration {
     vector_knowledge_base_configuration {
-      embedding_model_arn = "arn:aws:bedrock:eu-central-1:012345678901:foundation-model/text-embedding-v3-large"
+      embedding_model_arn = "arn:aws:bedrock:eu-central-1::foundation-model/amazon.titan-embed-text-v2:0"
     }
     type = "VECTOR"
   }
