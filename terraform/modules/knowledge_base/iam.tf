@@ -14,6 +14,19 @@ resource "aws_iam_role" "boardgamebot_knowledge_base" {
   assume_role_policy = data.aws_iam_policy_document.boardgamebot_knowledge_base_assume_role.json
 }
 
+resource "aws_iam_role_policy" "bedrock_sample_kb_oss" {
+  role   = aws_iam_role.boardgamebot_knowledge_base.id
+  policy = data.aws_iam_policy_document.bedrock_sample_kb_oss.json
+}
+
+
+data "aws_iam_policy_document" "bedrock_sample_kb_oss" {
+  statement {
+    actions   = ["aoss:APIAccessAll"]
+    resources = [aws_opensearchserverless_collection.boardgamebot_knowledge_base.arn]
+  }
+}
+
 data "aws_iam_policy_document" "boardgamebot_knowledge_base_assume_role" {
   statement {
     actions = ["sts:AssumeRole"]
