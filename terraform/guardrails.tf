@@ -31,7 +31,12 @@ resource "aws_bedrock_guardrail" "boardgamebot" {
   contextual_grounding_policy_config {
     filters_config {
       type      = "RELEVANCE"
-      threshold = 70
+      threshold = 0.7   
     }
   }
+}
+
+resource "aws_bedrock_guardrail_version" "boardgamebot" {
+  guardrail_arn = aws_bedrock_guardrail.boardgamebot.guardrail_arn
+  description   = "Initial version of boardgamebot guardrail with content filtering, word policy, topic restrictions, and contextual grounding"
 }
