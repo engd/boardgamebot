@@ -28,11 +28,10 @@ resource "aws_bedrock_guardrail" "boardgamebot" {
     }
   }
 
-  # TODO: Add contextual grounding policy config, provider problems
-/*   contextual_grounding_policy_config {
+  contextual_grounding_policy_config {
     filters_config {
       type      = "RELEVANCE"
-      threshold = "70"
+      threshold = 70
     }
-  } */
+  }
 }
