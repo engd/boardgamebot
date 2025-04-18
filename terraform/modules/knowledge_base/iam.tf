@@ -76,7 +76,7 @@ resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" 
         }
       ]
       Principal = [
-        aws_iam_role.boardgamebot_knowledge_base.arn,data.aws_caller_identity.this.arn]
+        aws_iam_role.boardgamebot_knowledge_base.arn]
     }
   ])
 }
