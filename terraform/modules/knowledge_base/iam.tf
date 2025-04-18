@@ -42,7 +42,7 @@ resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" 
       Rules = [
         {
           ResourceType = "index"
-          Resource = ["*"]
+          Resource = [ "index/${var.collection_name}/*"]
           Permission = [
             "aoss:CreateIndex",
             "aoss:DeleteIndex",
@@ -54,7 +54,7 @@ resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" 
         },
         {
           ResourceType = "collection"
-          Resource = ["*"]
+          Resource = ["collection/${var.collection_name}"]
           Permission = [
             "aoss:CreateCollectionItems",
             "aoss:DescribeCollectionItems",
@@ -75,7 +75,7 @@ resource "aws_opensearchserverless_security_policy" "boardgamebot_kb_encryption_
     Rules = [
       {
         Resource = [
-          "collection/*"
+              "collection/${var.collection_name}"
         ]
         ResourceType = "collection"
       }
@@ -93,13 +93,13 @@ resource "aws_opensearchserverless_security_policy" "boardgamebot_kb_network_pol
         {
           ResourceType = "collection"
           Resource = [
-            "collection/*"
+            "collection/${var.collection_name}"
           ]
         },
         {
           ResourceType = "dashboard"
           Resource = [
-            "collection/*"
+            "collection/${var.collection_name}"
           ]
         }
       ]

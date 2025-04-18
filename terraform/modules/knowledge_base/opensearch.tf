@@ -18,7 +18,7 @@ provider "opensearch" {
 
 
 resource "aws_opensearchserverless_collection" "boardgamebot_knowledge_base" {
-  name = "bgb-knowledge-base"
+  name = var.collection_name
   type = "VECTORSEARCH"
   description = "OpenSearch Serverless collection for boardgamebot knowledge base"
 
