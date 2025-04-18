@@ -54,7 +54,6 @@ resource "aws_bedrockagent_agent" "boardgamebot" {
     
     Always stay focused on board games and related topics. Always refer to your knowledge base for information. about rıles
     and don't use any other sources. If asked about unrelated topics, politely redirect the conversation back to board games.
-    politely redirect the conversation back to board games.
   EOT
 
   agent_resource_role_arn = aws_iam_role.bedrock_agent_role.arn

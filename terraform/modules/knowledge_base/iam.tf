@@ -92,3 +92,25 @@ data "aws_iam_policy_document" "boardgamebot_knowledge_base_assume_role" {
     }
   }
 }
+
+resource "aws_iam_role_policy" "boardgamebot_kb_s3_policy" {
+  name = "boardgamebot-knowledge-base-s3-policy"
+  role = aws_iam_role.boardgamebot_knowledge_base.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "s3:GetObject",
+          "s3:ListBucket"
+        ]
+        Resource = [
+          aws_s3_bucket.knowledge_base_artifacts.arn,
+          "${aws_s3_bucket.knowledge_base_artifacts.arn}/*"
+        ]
+      }
+    ]
+  })
+}
