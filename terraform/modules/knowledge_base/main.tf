@@ -77,6 +77,16 @@ resource "aws_bedrockagent_data_source" "boardgamebot" {
       bucket_arn = aws_s3_bucket.knowledge_base_artifacts.arn
     }
   }
+  vector_ingestion_configuration {
+    chunking_configuration {
+      chunking_strategy = "SEMANTIC"
+      semantic_chunking_configuration {
+        breakpoint_percentile_threshold = 50
+        buffer_size                     = 1
+        max_token                       = 1000
+      }
+    }
+  }
 }
 
 resource "aws_iam_role" "boardgamebot_knowledge_base" {
