@@ -1,3 +1,5 @@
+data "aws_caller_identity" "this" {}
+
 resource "aws_opensearchserverless_collection" "boardgamebot_knowledge_base" {
   name = "bgb-knowledge-base"
   type = "VECTORSEARCH"
@@ -40,6 +42,10 @@ resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" 
             "aoss:UpdateCollectionItems"
           ]
         }
+      ]
+      Principal = [
+        aws_iam_role.boardgamebot_knowledge_base.arn,
+        data.aws_caller_identity.this.arn
       ]
     }
   ])
