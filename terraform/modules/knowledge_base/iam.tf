@@ -34,8 +34,6 @@ data "aws_iam_policy_document" "boardgamebot_knowledge_base_assume_role" {
   }
 }
 
-
-
 resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" {
   name = "bgb-kb-aoss-access-policy"
   type = "data"
@@ -44,9 +42,7 @@ resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" 
       Rules = [
         {
           ResourceType = "index"
-          Resource = [
-            "index/*/*"
-          ]
+          Resource = ["*"]
           Permission = [
             "aoss:CreateIndex",
             "aoss:DeleteIndex",
@@ -58,9 +54,7 @@ resource "aws_opensearchserverless_access_policy" "boardgamebot_kb_aoss_policy" 
         },
         {
           ResourceType = "collection"
-          Resource = [
-            "collection/*"
-          ]
+          Resource = ["*"]
           Permission = [
             "aoss:CreateCollectionItems",
             "aoss:DescribeCollectionItems",
